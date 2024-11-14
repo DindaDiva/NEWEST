@@ -62,37 +62,37 @@
 		</div>
 	</section>
 
-	<section id="featured-books" class="py-5 my-5">
+	<section id="woman" class="py-5 my-5">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-
 					<div class="section-header align-center">
 						<div class="title">
 							<span>Some quality items</span>
 						</div>
-						<h2 class="section-title">Featured Books</h2>
+						<h2 class="section-title">Featured Books - Woman</h2>
 					</div>
-
 					<div class="product-list" data-aos="fade-up">
 						<div class="row">
-
-							<div class="col-md-3">
-								<div class="product-item">
-									<figure class="product-style">
-										<img src="{{asset('cust-assets/images/product-item1.jpg') }}" alt="Books" class="product-item">
-										<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
-											Cart</button>
-									</figure>
-									<figcaption>
-										<h3>Simple way of piece life</h3>
-										<span>Armor Ramsey</span>
-										<div class="item-price">$ 40.00</div>
-									</figcaption>
-								</div>
-							</div>
-						</div><!--ft-books-slider-->
-					</div><!--grid-->
+							@foreach($products as $product)
+								@if($product->gender_category === 'woman')
+									<div class="col-md-3">
+										<div class="product-item">
+											<figure class="product-style">
+												<img src="{{ asset('storage/product_images/' . $product->image) }}" alt="Books" class="product-item" width="150">
+												<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart</button>
+											</figure>
+											<figcaption>
+												<h3>{{ $product->name }}</h3>
+												<span>{{ $product->author }}</span>
+												<div class="item-price">Rp.{{ $product->price }}</div>
+											</figcaption>
+										</div>
+									</div>
+								@endif
+							@endforeach
+						</div><!--row-->
+					</div><!--product-list-->
 				</div>
 			</div>
 		</div>
@@ -109,7 +109,7 @@
 
 						<div class="col-md-6">
 							<figure class="products-thumb">
-								<img src="{{asset ('cust-assets/images/single-image.jpg')}}" alt="book" class="single-image">
+								<img src="{{asset ('cust-assets/images/items/woman1.jpg')}}" alt="book" class="single-image">
 							</figure>
 						</div>
 
@@ -141,44 +141,45 @@
 		</div>
 	</section>
 
-	<section id="popular-books" class="bookshelf py-5 my-5">
+	<section id="man" class="bookshelf py-5 my-5">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-
 					<div class="section-header align-center">
 						<div class="title">
 							<span>Some quality items</span>
 						</div>
-						<h2 class="section-title">Popular Books</h2>
+						<h2 class="section-title">Popular Books - Man</h2>
 					</div>
-
-
 					<div class="tab-content">
 						<div id="all-genre" data-tab-content class="active">
 							<div class="row">
-
-								<div class="col-md-3">
-									<div class="product-item">
-										<figure class="product-style">
-											<img src="{{asset('cust-assets/images/tab-item1.jpg')}}" alt="Books" class="product-item">
-											<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
-												Cart</button>
-										</figure>
-										<figcaption>
-											<h3>Portrait photography</h3>
-											<span>Adam Silber</span>
-											<div class="item-price">$ 40.00</div>
-										</figcaption>
-									</div>
-								</div>
-
-							</div>
-						</div>
-					</div>
-
-
-				</div><!--inner-tabs-->
+								@foreach($products as $product)
+									@if($product->gender_category === 'man')
+									<div class="col-md-3">
+    <div class="product-item">
+        <figure class="product-style">
+            <img src="{{ asset('storage/product_images/' . $product->image) }}" alt="{{ $product->name }}" class="product-item" width="150">
+            <!-- Tombol Chat WhatsApp -->
+            <a href="https://wa.me/6282251356040?text=Saya%20tertarik%20dengan%20produk%20{{ urlencode($product->name) }}%20dengan%20harga%20Rp.{{ $product->price }} apakah produk ini ready?" class="add-to-cart" target="_blank">
+                Chat WA
+            </a>
+        </figure>
+        <figcaption>
+            <h3>{{ $product->name }}</h3>
+            <span>{{ $product->author }}</span>
+            <div class="item-price">Rp.{{ $product->price }}</div>
+            <!-- Tombol Review -->
+            <a  class="btn btn-info mt-2">Review</a>
+        </figcaption>
+    </div>
+</div>
+									@endif
+								@endforeach
+							</div><!--row-->
+						</div><!--tab-content-->
+					</div><!--tab-->
+				</div>
 			</div>
 		</div>
 	</section>

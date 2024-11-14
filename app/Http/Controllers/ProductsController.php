@@ -30,6 +30,7 @@ class ProductsController extends Controller
                         'description' => 'required',
                         'price' => 'required|numeric',
                         'type' => 'required|in:atasan,bawahan',
+                        'gender_category' => 'required|in:woman,man',
                         'image' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
                     ]);
             
@@ -59,7 +60,8 @@ class ProductsController extends Controller
                     'name' => 'required|string|max:255',
                     'description' => 'nullable|string',
                     'price' => 'required|numeric',
-                    'type' => 'required|string|max:255', // Pastikan ini sesuai dengan pilihan
+                    'type' => 'required|string|max:255',
+                    'gender_category' => 'required|string|max:255', // Pastikan ini sesuai dengan pilihan
                     'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
                 ]);
         
@@ -71,6 +73,7 @@ class ProductsController extends Controller
                 $product->description = $validatedData['description'];
                 $product->price = $validatedData['price'];
                 $product->type = $validatedData['type'];
+                $product->gender_category = $validatedData['gender_category'];
         
                 // Jika ada gambar baru yang di-upload, simpan dan hapus gambar lama
                 if ($request->hasFile('image')) {

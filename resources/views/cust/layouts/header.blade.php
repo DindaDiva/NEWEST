@@ -22,7 +22,7 @@
 
 </head>
 
-<body data-bs-spy="scroll" data-bs-target="#header" tabindex="0">
+<body data-bs-spy="scroll" data-bs-target="#header" tabindex="0" id="home">
 
 	<div id="header-wrap">
 
@@ -32,7 +32,7 @@
 
 					<div class="col-md-2">
 						<div class="main-logo">
-							<a href="{{ url('home')}}" 	><img src="{{ asset('cust-assets/images/logo-transp.png')}}" alt="logo" width="150px" ></a>
+							<a href="#home"><img src="{{ asset('cust-assets/images/logo-transp.png')}}" alt="logo" width="150px" ></a>
 						</div>
 
 					</div>
@@ -42,9 +42,9 @@
 						<nav id="navbar">
 							<div class="main-menu stellarnav">
 								<ul class="menu-list">
-									<li class="menu-item active"><a href="#home">Home</a></li>
-									<li class="menu-item"><a href="#featured-books" class="nav-link">Woman</a></li>
-									<li class="menu-item"><a href="#popular-books" class="nav-link">Man</a></li>
+									<li class="menu-item"><a href="#home" class="nav-link">Home</a></li>
+									<li class="menu-item"><a href="#woman" class="nav-link">Woman</a></li>
+									<li class="menu-item"><a href="#man" class="nav-link">Man</a></li>
 									<li class="menu-item dropdown">
 										@if(Auth::check())
 											<!-- Nama pengguna sebagai tombol dropdown -->
