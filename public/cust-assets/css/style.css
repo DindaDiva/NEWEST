@@ -157,6 +157,66 @@ a {
 }
 
 /* btn */
+
+/* Kontainer tombol */
+.product-buttons {
+  display: flex;
+  gap: 10px; /* Jarak antar tombol */
+  margin-top: 15px;
+  justify-content: center; /* Pusatkan tombol */
+}
+
+/* Gaya umum untuk tombol */
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px; /* Bentuk bulat */
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Tombol Chat WA */
+.btn-chat {
+  background-color: #000000; 
+}
+
+.btn-chat:hover {
+  background-color: #fe7d20; 
+  color: #ffffff; /* Ubah warna tulisan */
+}
+
+/* Tombol Review */
+.btn-review {
+  background-color: #fe7d20; 
+}
+
+.btn-review:hover {
+  background-color: #000000; 
+  color: #ffffff; /* Ubah warna tulisan */
+}
+
+.btn-lock {
+  background-color: #fa8181; 
+}
+
+.btn-lock:hover {
+  background-color: #f15555; 
+}
+
+/* Ikon di tombol */
+.btn-icon i {
+  margin-right: 8px; 
+}
+
+
+
+
 .btn {
   --bs-btn-border-radius: 0;
 }

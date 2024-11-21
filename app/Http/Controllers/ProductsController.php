@@ -124,35 +124,8 @@ class ProductsController extends Controller
 
 
 
-//function review
 
-            public function reviews(Request $request)
-            {
-                // Mengambil ulasan terbaru dan menyertakan informasi produk dan pengguna
-                $query = Review::with(['product', 'user']);
-
-                // Menyaring berdasarkan rating atau status
-                if ($request->has('sort')) {
-                    switch ($request->input('sort')) {
-                        case 'highest':
-                            $query->orderBy('rating', 'desc');
-                            break;
-                        case 'lowest':
-                            $query->orderBy('rating', 'asc');
-                            break;
-                        default:
-                            $query->latest();
-                            break;
-                    }
-                } else {
-                    $query->latest();
-                }
-
-                // Paginasi hasil ulasan
-                $reviews = $query->paginate(10);
-
-                return view('admin.admin-reviews', compact('reviews'));
-            }
+          
 
            
 }

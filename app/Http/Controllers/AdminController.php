@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Review;
 
 
 class AdminController extends Controller
@@ -16,14 +17,53 @@ class AdminController extends Controller
         return view('admin.admin-home');
     }
 
+
+
+
+/*fungsi di review*/
     function review() {
-        return view('admin.admin-reviews');
+        $reviews = Review::with('product', 'user')->latest()->paginate(5);
+        return view('admin.admin-reviews', compact('reviews'));
     }
 
+    public function approveReview($id)
+    {
+        $review = Review::findOrFail($id);
+        $review->status = 'approved';
+        $review->save();
+
+        return redirect()->route('admin-reviews')->with('success', 'Review approved successfully.');
+    }
+
+    public function rejectReview($id)
+    {
+        $review = Review::findOrFail($id);
+        $review->status = 'rejected';
+        $review->save();
+
+        return redirect()->route('admin-reviews')->with('info', 'Review rejected successfully.');
+    }
+
+    public function deleteReview($id)
+    {
+        // Temukan review berdasarkan ID
+        $review = Review::findOrFail($id);
+        
+        // Hapus review
+        $review->delete();
+
+        // Redirect atau kembali dengan pesan sukses
+        return redirect()->route('admin-reviews')->with('success', 'Review has been deleted successfully.');
+    }
+
+
+
+
+/*fungsi di user*/
     function user()
     {
         return view('admin.admin-users', [
-        'users' => User::latest()->get()
+        'users' => User::latest()->paginate(5)
         ]);
     }
 

@@ -30,7 +30,7 @@ Route::fallback(function () {
 });
 
 // Admin
-Route::middleware(['auth', CheckRole::class.':admin'])->group(function() {
+Route::middleware(['auth', 'checkRole:admin'])->group(function() {
     // Hanya admin yang dapat mengakses halaman:
     Route::get('/admin-home', [AdminController::class, 'admin'])->name('admin-home');
     Route::get('/admin-reviews', [AdminController::class, 'review'])->name('admin-reviews');
@@ -40,8 +40,11 @@ Route::middleware(['auth', CheckRole::class.':admin'])->group(function() {
     //hapus user
     Route::delete('/admin-users/{id}', [AdminController::class, 'deleteUser'])->name('admin-deleteUser');
 
-    
- 
+    Route::patch('/admin/reviews/{id}/approve', [AdminController::class, 'approveReview'])->name('admin.approve-review');
+    Route::patch('/admin/reviews/{id}/reject', [AdminController::class, 'rejectReview'])->name('admin.reject-review');
+    Route::delete('/admin/reviews/{id}/delete', [AdminController::class, 'deleteReview'])->name('admin.delete-review');
+
+
 
     // Product (tampil, tambah)
     Route::get('/admin-products', [ProductsController::class, 'product'])->name('admin-products');
@@ -54,14 +57,13 @@ Route::middleware(['auth', CheckRole::class.':admin'])->group(function() {
     //Product (search)
     Route::get('/admin-products/search', [ProductsController::class, 'search'])->name('products-search');
 
-
-    
-
-
 });
 
-// Customer 
-Route::middleware(['auth', CheckRole::class.':cust'])->group(function() {
+// Cust
+Route::middleware(['auth', 'checkRole:cust'])->group(function() {
     // Hanya cust yang dapat mengakses halaman:
-    Route::get('/home', [CustController::class, 'index'])->name('landing-page');
+    Route::get('/home', [CustController::class, 'index'])->name('cust-home');
+    Route::get('/products/review/{id}', [CustController::class, 'reviewForm'])->name('cust.review');
+    Route::post('/products/review/{id}', [CustController::class, 'submitReview'])->name('product.review');
+
 });

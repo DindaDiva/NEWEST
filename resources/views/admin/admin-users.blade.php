@@ -42,16 +42,43 @@
                             <button type="submit" class="btn btn-primary btn-sm">Update Role</button>
                         </form>
 
-                        <form action="{{ route('admin-deleteUser', $user->id) }}" method="POST" >
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?');">Hapus</button>
-                        </form>
+                            <button type="submit" class="btn btn-sm btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $user->id }}">Delete</button>
                     </td>
                 </tr>
+
+                        <div class="modal fade" id="deleteModal{{ $user->id }}"  tabindex="-1" aria-labelledby="deleteProductModalLabel{{ $user->id }}" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteProductModalLabel{{ $user->id }}">Konfirmasi Hapus</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Apakah Anda yakin ingin menghapus user <strong>{{ $user->name }}</strong>?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                        <form action="{{ route('admin-deleteUser', $user->id) }}" method="POST" style="display:inline-block;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>  
+                        </div>
+
+
             @endforeach
         </tbody>
     </table>
+
+    <nav>
+        <div class="d-flex justify-content-center">
+            {{ $users->links() }}
+         </div>
+    </nav>
+
 </div>
 
 <script>
