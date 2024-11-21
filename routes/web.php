@@ -40,10 +40,12 @@ Route::middleware(['auth', 'checkRole:admin'])->group(function() {
     //hapus user
     Route::delete('/admin-users/{id}', [AdminController::class, 'deleteUser'])->name('admin-deleteUser');
 
+
+    //route review
     Route::patch('/admin/reviews/{id}/approve', [AdminController::class, 'approveReview'])->name('admin.approve-review');
     Route::patch('/admin/reviews/{id}/reject', [AdminController::class, 'rejectReview'])->name('admin.reject-review');
     Route::delete('/admin/reviews/{id}/delete', [AdminController::class, 'deleteReview'])->name('admin.delete-review');
-
+    Route::get('/admin/reviews/search', [AdminController::class, 'searchReview'])->name('admin.search-review');
 
 
     // Product (tampil, tambah)

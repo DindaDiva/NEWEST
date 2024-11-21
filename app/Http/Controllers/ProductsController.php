@@ -115,10 +115,13 @@ class ProductsController extends Controller
                 $query = $request->input('query');
     
                 // Menjalankan pencarian dengan pagination
-                $products = Product::where('name', 'LIKE', "%{$query}%")
-                                   ->paginate(5)
-                                   ->appends(['query' => $query]);
-            
+                $products = Product::where('kode_produk', 'like', "%{$query}%")
+                                    ->orWhere('name', 'like', "%{$query}%")
+                                    ->orWhere('type', 'like', "%{$query}%")
+                                    ->orWhere('gender_category', 'like', "%{$query}%")
+                                    ->paginate(5)
+                                    ->appends(['query' => $query]);
+
                 return view('admin.admin-products', compact('products', 'query'));
             }
 

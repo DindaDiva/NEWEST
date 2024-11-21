@@ -9,8 +9,8 @@
         @csrf
         <!-- Rating Produk -->
         <div class="form-group mt-3">
-            <label for="product_rating" class="form-label">Product Rating (1-5)</label>
-            <select id="product_rating" name="product_rating" class="form-control" required>
+            <label for="rating" class="form-label">Product Rating (1-5)</label>
+            <select id="rating" name="rating" class="form-control" required>
                 <option value="5">5 - Excellent</option>
                 <option value="4">4 - Good</option>
                 <option value="3">3 - Average</option>

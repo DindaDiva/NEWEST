@@ -82,15 +82,14 @@
 </div>
 
 <script>
-    // Script untuk menghilangkan alert setelah 5 detik
-    setTimeout(function() {
-        let alert = document.getElementById('success-alert');
-        if (alert) {
-            alert.style.transition = "opacity 0.5s ease"; // Smooth transition
-            alert.style.opacity = 0; // Fade out effect
-            setTimeout(() => alert.remove(), 500); // Hapus elemen setelah efek fade out selesai
-        }
-    }, 5000); // 5000 ms = 5 detik
+    setTimeout(function () {
+        let alerts = document.querySelectorAll('.alert'); 
+        alerts.forEach(function (alert) {
+            alert.style.transition = "opacity 0.5s ease";
+            alert.style.opacity = 0;
+            setTimeout(() => alert.remove(), 500);
+        });
+    }, 2000);
 </script>
 
 @include('admin.admin-layouts.admin-footer')

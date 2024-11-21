@@ -12,12 +12,14 @@
 
         <div class="row mb-4">
             <div class="col-md-6">   
-                <div class="input-group">
-                        <input type="text"  name="query" value="{{ request('query') }}" class="form-control" placeholder="Search product...">
+                <form action="{{ route('products-search') }}" method="GET">
+                    <div class="input-group">
+                        <input type="text" name="query" value="{{ request('query') }}" class="form-control" placeholder="Search product..." required>
                         <div class="input-group-append">
-                            <button type="button" class="btn btn-primary"  >Search</button>
+                            <button type="submit" class="btn btn-primary">Search</button>
                         </div>
-                </div> 
+                    </div>
+                </form>
             </div>
             <div class="col-md-6">
                 <a href="" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#addProductModal">Add Product</a>
@@ -53,7 +55,7 @@
                                 <!-- Tombol Edit mengarah ke modal yang sesuai -->
                                 <a href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editProductModal{{ $product->id }}">Edit</a>
                                 <!-- Tombol Hapus mengarah ke modal hapus yang sesuai -->
-                                <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $product->id }}">Hapus</a>                  
+                                <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $product->id }}">Delete</a>                  
                             </td>
                         </tr>
 
@@ -211,15 +213,14 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-    // Script untuk menghilangkan alert setelah 5 detik
-    setTimeout(function() {
-        let alert = document.getElementById('success-alert');
-        if (alert) {
-            alert.style.transition = "opacity 0.5s ease"; // Smooth transition
-            alert.style.opacity = 0; // Fade out effect
-            setTimeout(() => alert.remove(), 500); // Hapus elemen setelah efek fade out selesai
-        }
-    }, 5000); // 5000 ms = 5 detik
+    setTimeout(function () {
+        let alerts = document.querySelectorAll('.alert'); 
+        alerts.forEach(function (alert) {
+            alert.style.transition = "opacity 0.5s ease";
+            alert.style.opacity = 0;
+            setTimeout(() => alert.remove(), 500);
+        });
+    }, 2000);
     </script>
     
     

@@ -14,8 +14,19 @@ class AdminController extends Controller
     }*/
 
     function admin() {
-        return view('admin.admin-home');
+        // Ambil review yang disetujui untuk produk dan jasa
+        $approvedReviews = Review::where('status', 'approved')->get();
+        
+        // Menghitung jumlah review dan rating rata-rata untuk produk dan jasa
+        $productReviews = $approvedReviews->where('product_id', '!=', null);
+        $serviceReviews = $approvedReviews->where('product_id', '!=',null);
+
+        $productAvgRating = $productReviews->avg('rating');
+        $serviceAvgRating = $serviceReviews->avg('service_rating');
+    
+        return view('admin.admin-home', compact('productReviews', 'serviceReviews', 'productAvgRating', 'serviceAvgRating'));
     }
+
 
 
 
@@ -54,6 +65,21 @@ class AdminController extends Controller
 
         // Redirect atau kembali dengan pesan sukses
         return redirect()->route('admin-reviews')->with('success', 'Review has been deleted successfully.');
+    }
+
+    public function searchReview(Request $request)
+    {
+        $status = $request->input('status');
+        
+        // Membuat query untuk memfilter berdasarkan status
+        $reviews = Review::with('product', 'user')
+                        ->when($status, function ($queryBuilder) use ($status) {
+                            return $queryBuilder->where('status', $status);
+                        })
+                        ->paginate(5)
+                        ->appends(['status' => $status]);
+
+        return view('admin.admin-reviews', compact('reviews', 'status'));
     }
 
 

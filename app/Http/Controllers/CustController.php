@@ -31,6 +31,7 @@ class CustController extends Controller
     {
         $request->validate([
             'rating' => 'required|integer|min:1|max:5',
+            'service_rating' => 'required|integer|min:1|max:5',
             'comment' => 'required|string|max:500',
         ]);
 
@@ -38,6 +39,7 @@ class CustController extends Controller
         $review->product_id = $id;
         $review->user_id = auth()->id(); // ID user yang login
         $review->rating = $request->rating;
+        $review->service_rating = $request->service_rating;
         $review->comment = $request->comment;
         $review->status = 'pending'; // Menunggu persetujuan admin
         $review->save();

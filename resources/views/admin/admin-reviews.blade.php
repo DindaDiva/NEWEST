@@ -20,13 +20,20 @@
 
     <!-- Search bar dan filter -->
     <div class="row mb-4">
-        <div class="col-md-6">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search reviews...">
-                <div class="input-group-append">
-                    <button type="button" class="btn btn-primary">Search</button>
+        <div class="col-md-6">   
+            <form method="GET" action="{{ route('admin.search-review') }}">
+                <div class="input-group">
+                    <select name="status" class="form-select">
+                        <option value="">All Statuses</option>
+                        <option value="approved" {{ request('status') == 'approved' ? 'selected' : '' }}>Approved</option>
+                        <option value="rejected" {{ request('status') == 'rejected' ? 'selected' : '' }}>Rejected</option>
+                        <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
+                    </select>
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary">Filter</button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 
@@ -36,7 +43,8 @@
             <tr>
                 <th scope="col">Product</th>
                 <th scope="col">User</th>
-                <th scope="col">Rating</th>
+                <th scope="col">Product Rating</th>
+                <th scope="col">Service Rating</th>
                 <th scope="col">Review</th>
                 <th scope="col">Status</th>
                 <th scope="col">Actions</th>
@@ -48,6 +56,7 @@
                     <td>{{ $review->product->name }}</td>
                     <td>{{ $review->user->name }}</td>
                     <td>{{ $review->rating }} / 5</td>
+                    <td>{{ $review->service_rating }} / 5</td>
                     <td>{{ $review->comment }}</td>
                     <td>
                         @if ($review->status == 'approved')
@@ -114,17 +123,15 @@
 </div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-    // Script untuk menghilangkan alert setelah 5 detik
-    setTimeout(function() {
-        let alert = document.getElementById('success-alert');
-        if (alert) {
-            alert.style.transition = "opacity 0.5s ease"; // Smooth transition
-            alert.style.opacity = 0; // Fade out effect
-            setTimeout(() => alert.remove(), 500); // Hapus elemen setelah efek fade out selesai
-        }
-    }, 5000); // 5000 ms = 5 detik
+<script>
+    setTimeout(function () {
+        let alerts = document.querySelectorAll('.alert'); 
+        alerts.forEach(function (alert) {
+            alert.style.transition = "opacity 0.5s ease";
+            alert.style.opacity = 0;
+            setTimeout(() => alert.remove(), 500);
+        });
+    }, 2000);
 </script>
 
 @include('admin.admin-layouts.admin-footer')
