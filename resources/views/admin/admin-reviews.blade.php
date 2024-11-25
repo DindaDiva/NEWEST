@@ -90,14 +90,14 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="deleteProductModalLabel{{ $review->id }}">Konfirmasi Hapus</h5>
+                                        <h5 class="modal-title" id="deleteProductModalLabel{{ $review->id }}">Delete Confirmation</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Apakah Anda yakin ingin menghapus review?</p>
+                                        <p>Are you sure want to delete this review?</p>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                         <form action="{{ route('admin.delete-review', $review->id) }}" method="POST" style="display:inline-block;">
                                             @csrf
                                             @method('DELETE')

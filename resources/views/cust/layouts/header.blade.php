@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Newest - New Est Cloth Store</title>
+	<title>Newest - NewEst Clothing Store</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +17,7 @@
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
+	<link rel="icon" href="{{ asset('assets/img/logo-ne-trnsp.png') }}" type="image/png">
 	<link rel="stylesheet" type="text/css" href="{{ asset('cust-assets/css/normalize.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('cust-assets/icomoon/icomoon.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('cust-assets/css/vendor.css') }}">
@@ -47,6 +48,7 @@
 									<li class="menu-item"><a href="#home" class="nav-link">Home</a></li>
 									<li class="menu-item"><a href="#woman" class="nav-link">Woman</a></li>
 									<li class="menu-item"><a href="#man" class="nav-link">Man</a></li>
+									<li class="menu-item"><a href="#testimonial" class="nav-link">Testimonial</a></li>
 									<li class="menu-item dropdown">
 										@if(Auth::check())
 											<!-- Nama pengguna sebagai tombol dropdown -->

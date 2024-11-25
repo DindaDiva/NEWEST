@@ -164,6 +164,7 @@ a {
   gap: 10px; /* Jarak antar tombol */
   margin-top: 15px;
   justify-content: center; /* Pusatkan tombol */
+  flex-wrap: wrap; /* Membungkus tombol ke baris berikutnya jika ruang terbatas */
 }
 
 /* Gaya umum untuk tombol */
@@ -183,35 +184,60 @@ a {
 
 /* Tombol Chat WA */
 .btn-chat {
-  background-color: #000000; 
+  background-color: #000000;
 }
 
 .btn-chat:hover {
-  background-color: #fe7d20; 
+  background-color: #fe7d20;
   color: #ffffff; /* Ubah warna tulisan */
 }
 
 /* Tombol Review */
 .btn-review {
-  background-color: #fe7d20; 
+  background-color: #fe7d20;
 }
 
 .btn-review:hover {
-  background-color: #000000; 
+  background-color: #000000;
   color: #ffffff; /* Ubah warna tulisan */
 }
 
 .btn-lock {
-  background-color: #fa8181; 
+  background-color: #fa8181;
 }
 
 .btn-lock:hover {
-  background-color: #f15555; 
+  background-color: #f15555;
 }
 
 /* Ikon di tombol */
 .btn-icon i {
-  margin-right: 8px; 
+  margin-right: 8px;
+}
+
+/* Responsif - Ukuran tombol menyesuaikan perangkat kecil */
+@media (max-width: 768px) {
+  .btn-icon {
+    font-size: 14px; /* Memperbesar ukuran font */
+    padding: 8px 16px; /* Mengurangi padding untuk perangkat lebih kecil */
+  }
+
+  .product-buttons {
+    gap: 15px; /* Menambahkan jarak antar tombol */
+  }
+}
+
+/* Responsif - Tampilan tombol lebih kecil untuk ponsel */
+@media (max-width: 576px) {
+  .btn-icon {
+    font-size: 16px; /* Ukuran font lebih besar */
+    padding: 10px 18px; /* Padding yang lebih nyaman untuk tombol kecil */
+  }
+
+  .product-buttons {
+    gap: 10px; /* Menambah jarak antar tombol pada ponsel */
+    justify-content: space-between; /* Menyebar tombol lebih baik */
+  }
 }
 
 
@@ -1572,7 +1598,7 @@ button {
   padding-left: 20px;
 }
 
-.btn-subscribe {
+.btn-testimonial {
   width: 30%;
   color: #111;
   background: transparent;
@@ -1580,13 +1606,13 @@ button {
   height: max-content;
 }
 
-.btn-subscribe span {
+.btn-testimonial span {
   transition: 0.5s ease-out;
   padding-right: 5px;
   opacity: 1;
 }
 
-.btn-subscribe:hover span {
+.btn-testimonial:hover span {
   padding-right: 10px;
   opacity: 0.5;
 }
@@ -2145,6 +2171,9 @@ img.books-image {
   }
 }
 */
+
+
+
 /*----- Special Offer Section
 --------------------------------------------------------------*/
 #special-offer .section-header {
@@ -2167,27 +2196,33 @@ span.prev-price {
 }
 
 
-/*----- Subscribe Section
+/*----- Testimonial Section
 --------------------------------------------------------------*/
-#subscribe {
+#testimonial {
   background: #EDEBE4;
   padding: 120px 0;
 }
 
-#subscribe .subscribe-content {
+#testimonial .testimonial-content {
   margin-left: 15px;
 }
 
-#subscribe .subscribe-content input[type="text"] {
+#testimonial .testimonial-content input[type="text"] {
   background: none;
   border: none;
   width: 252px;
 }
 
-#subscribe form#form {
+#testimonial form#form {
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #6F6F6F;
+}
+
+#testimonial .section-title.divider,
+#testimonial .section-title.divider:after {
+  margin: 0 auto;
+  display: block;
 }
 
 ::-webkit-input-placeholder {
@@ -2202,15 +2237,15 @@ span.prev-price {
 
 
 @media screen and (max-width: 1200px) {
-  #subscribe form#form {
+  #testimonial form#form {
     width: 90%;
   }
 
-  #subscribe .subscribe-content input[type="text"] {
+  #testimonial .testimonial-content input[type="text"] {
     width: 100%;
   }
 
-  #subscribe .btn-subscribe {
+  #testimonial .btn-testimonial {
     width: 30%;
   }
 }
@@ -2221,31 +2256,27 @@ span.prev-price {
       flex-wrap: wrap;
       justify-content: center;
   }*/
-  #subscribe .section-title {
-    width: 100%;
-    margin: 0 auto 50px;
-  }
 
-  #subscribe p {
+  #testimonial p {
     width: 100%;
     text-align: left;
     margin: 30px auto;
   }
 
-  #subscribe form#form,
-  #subscribe .subscribe-content {
+  #testimonial form#form,
+  #testimonial .testimonial-content {
     width: 100%;
   }
 
-  #subscribe form#form {
+  #testimonial form#form {
     margin: 0 auto;
   }
 
-  #subscribe .subscribe-content {
+  #testimonial .testimonial-content {
     margin-left: 0;
   }
 
-  #subscribe {
+  #testimonial {
     margin-bottom: 90px;
   }
 

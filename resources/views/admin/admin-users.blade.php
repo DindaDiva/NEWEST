@@ -13,13 +13,13 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Nama</th>
+                <th>Name</th>
                 <th>Username</th>
                 <th>Email</th>
                 <th>Role</th>
                 <th>Created At</th>
                 <th>Updated At</th>
-                <th>Action</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -50,14 +50,14 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="deleteProductModalLabel{{ $user->id }}">Konfirmasi Hapus</h5>
+                                        <h5 class="modal-title" id="deleteProductModalLabel{{ $user->id }}">Delete Confirmation</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Apakah Anda yakin ingin menghapus user <strong>{{ $user->name }}</strong>?</p>
+                                        <p>Are you sure want to delete user <strong>{{ $user->name }}</strong>?</p>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                         <form action="{{ route('admin-deleteUser', $user->id) }}" method="POST" style="display:inline-block;">
                                             @csrf
                                             @method('DELETE')

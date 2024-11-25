@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Register - Newest</title>
     <!-- CSS files -->
+    <link rel="icon" href="{{ asset('assets/img/logo-ne-trnsp.png') }}" type="image/png">
     <link href="{{ asset('assets/css/tabler.min.css?1692870487') }}" rel="stylesheet"/>
     <link href="{{ asset('assets/css/tabler-flags.min.css?1692870487') }}" rel="stylesheet"/>
     <link href="{{ asset('assets/css/tabler-payments.min.css?1692870487') }}" rel="stylesheet"/>

@@ -30,14 +30,14 @@
                 <thead class="thead-dark">
                     <tr>
                         <th>ID</th>
-                        <th>Kode Produk</th>
-                        <th>Nama</th>
-                        <th>Deskripsi</th>
-                        <th>Harga (Rp)</th>
-                        <th>Jenis</th>
+                        <th>Product Code</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price (Rp)</th>
+                        <th>Tipe</th>
                         <th>Gender</th>
-                        <th>Gambar</th>
-                        <th>Aksi</th>
+                        <th>Picture</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,7 +64,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="editProductModalLabel{{ $product->id }}">Edit Produk</h5>
+                                        <h5 class="modal-title" id="editProductModalLabel{{ $product->id }}">Edit Product</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
@@ -73,24 +73,24 @@
                                         @method('PUT')
 
                                             <div class="mb-3">
-                                                <label for="editProductCode" class="form-label">Kode Produk</label>
+                                                <label for="editProductCode" class="form-label">Product Code</label>
                                                 <input type="text" name="kode_produk" class="form-control" value="{{ old('kode_produk', $product->kode_produk) }}" id="editProductCode" required>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="editProductName" class="form-label">Nama Produk</label>
+                                                <label for="editProductName" class="form-label">Product Name</label>
                                                 <input type="text" name="name" class="form-control" value="{{ old('name', $product->name) }}" id="editProductName" required>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="editProductDescription" class="form-label">Deskripsi Produk</label>
+                                                <label for="editProductDescription" class="form-label">Product Description</label>
                                                 <textarea name="description" class="form-control" id="editProductDescription" rows="3">{{ old('description', $product->description) }}</textarea>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="editProductPrice" class="form-label">Harga Produk</label>
+                                                <label for="editProductPrice" class="form-label">Price</label>
                                                 <input type="number" name="price" class="form-control" id="editProductPrice" value="{{ old('price', $product->price) }}" required>
                                             </div>
                                             <div class="mb-3">
                                                 <div class="form-group">
-                                                    <label for="productType">Jenis</label>
+                                                    <label for="productType">Tipe</label>
                                                     <select class="form-control" id="type" name="type">
                                                         <option value="Atasan" {{ old('type', $product->type) == 'Atasan' ? 'selected' : '' }}>Atasan</option>
                                                         <option value="Bawahan" {{ old('type', $product->type) == 'Bawahan' ? 'selected' : '' }}>Bawahan</option>
@@ -107,7 +107,7 @@
                                                 </div>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="editProductImage" class="form-label">Ganti Gambar Produk</label>
+                                                <label for="editProductImage" class="form-label">Update Picture</label>
                                                 <input type="file" name="image" class="form-control" id="editProductImage">
                                                 @if ($product->image)
                                                     <img src="{{ Storage::url($product->image) }}" width="100" alt="Gambar {{ $product->name }}">
@@ -125,18 +125,18 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="deleteProductModalLabel{{ $product->id }}">Konfirmasi Hapus</h5>
+                                        <h5 class="modal-title" id="deleteProductModalLabel{{ $product->id }}">Delete Confirmation</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Apakah Anda yakin ingin menghapus produk <strong>{{ $product->name }}</strong>?</p>
+                                        <p>Are you sure want to delete product <strong>{{ $product->name }}</strong>?</p>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                         <form action="{{ route('products-destroy', $product->id) }}" method="POST" style="display:inline-block;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                            <button type="submit" class="btn btn-danger">Delete</button>
                                         </form>
                                     </div>
                                 </div>
@@ -153,31 +153,31 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addProductModalLabel">Tambah Produk Baru</h5>
+                    <h5 class="modal-title" id="addProductModalLabel">Add New Product</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="addProductModal" action="{{ route('product-store') }}"  method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <label for="productCode" class="form-label">Kode Produk</label>
-                            <input type="text" id="kode_produk" name="kode_produk" class="form-control" placeholder="Masukkan kode produk">
+                            <label for="productCode" class="form-label">Product Code</label>
+                            <input type="text" id="kode_produk" name="kode_produk" class="form-control" placeholder="Add Product Code">
                         </div>
                         <div class="mb-3">
-                            <label for="productName" class="form-label">Nama Produk</label>
-                            <input type="text" id="name" name="name" class="form-control" placeholder="Masukkan nama produk">
+                            <label for="productName" class="form-label">Product Name</label>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Add Product name">
                         </div>
                         <div class="mb-3">
-                            <label for="productDescription" class="form-label">Deskripsi Produk</label>
-                            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Masukkan deskripsi produk"></textarea>
+                            <label for="productDescription" class="form-label">Product Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Add Description"></textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="productPrice" class="form-label">Harga Produk</label>
-                            <input type="number" class="form-control" id="price" name="price" placeholder="Masukkan harga produk">
+                            <label for="productPrice" class="form-label">Price</label>
+                            <input type="number" class="form-control" id="price" name="price" placeholder="Add Price">
                         </div>
                         <div class="mb-3">
                             <div class="form-group">
-                                <label for="productType">Jenis</label>
+                                <label for="productType">Tipe</label>
                                 <select class="form-control" id="type" name="type">
                                     <option value="atasan" {{ (isset($product) && $product->type == 'atasan') ? 'selected' : '' }}>Atasan</option>
                                     <option value="bawahan" {{ (isset($product) && $product->type == 'bawahan') ? 'selected' : '' }}>Bawahan</option>
@@ -194,7 +194,7 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="productImage" class="form-label">Upload Gambar Produk</label>
+                            <label for="productImage" class="form-label">Upload Picture</label>
                             <input type="file" class="form-control" id="image" name="image">
                         </div>
                         <button type="submit" class="btn btn-primary">Add Product</button>

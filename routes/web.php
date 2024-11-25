@@ -12,12 +12,14 @@ use App\Http\Middleware\CheckRole;
 
 Route::get('/', [CustController::class, 'index'])->name('home');
 
+
 Route::get('/login', [SesiController::class, 'index'])->name('login');
 Route::post('/login', [SesiController::class, 'login']);
 Route::post('/logout', [SesiController::class, 'logout'])->name('logout');
 
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
+
 
 //Route::get('/register', function () {return view('auth.register');})->name('register');
 //Route::post('/register', [SesiController::class, 'register']);

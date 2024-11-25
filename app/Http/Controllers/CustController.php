@@ -16,8 +16,14 @@ use App\Models\Review;
 class CustController extends Controller
 {
     public function index() {
-        $products = Product::all();  // Ambil data produk dari database
-        return view('cust.home', compact('products'));  // Kirim ke view
+        $products = Product::all();  
+
+        $approvedReviews = Review::with('user', 'product')
+                            ->where('status', 'approved')
+                            ->latest()
+                            ->get();
+                            
+        return view('cust.home', compact('products', 'approvedReviews'));
     }
     
 
@@ -46,5 +52,9 @@ class CustController extends Controller
 
         return redirect()->route('cust-home')->with('success', 'Your review has been submitted and is awaiting approval!');
     }
+
+   
+
+    
     
 }
