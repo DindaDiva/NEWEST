@@ -50,7 +50,7 @@
                             <td>{{ $product->price }}</td>
                             <td>{{ $product->type }}</td>
                             <td>{{ $product->gender_category }}</td>
-                            <td><img src="{{ Storage::url($product->image) }}" width="100" alt="Gambar {{ $product->name }}"></td>
+                            <td><img src="{{ Storage::url('product_images/' . $product->image) }}" width="100" alt="Gambar {{ $product->name }}"></td>
                             <td>
                                 <!-- Tombol Edit mengarah ke modal yang sesuai -->
                                 <a href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editProductModal{{ $product->id }}">Edit</a>
@@ -110,7 +110,7 @@
                                                 <label for="editProductImage" class="form-label">Update Picture</label>
                                                 <input type="file" name="image" class="form-control" id="editProductImage">
                                                 @if ($product->image)
-                                                    <img src="{{ Storage::url($product->image) }}" width="100" alt="Gambar {{ $product->name }}">
+                                                    <img src="{{ Storage::url('product_images/' . $product->image) }}" width="100" alt="Gambar {{ $product->name }}">
                                                 @endif
                                             </div>
                                             <button type="submit" class="btn btn-primary">Update Product</button>

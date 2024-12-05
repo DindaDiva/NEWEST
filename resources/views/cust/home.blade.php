@@ -88,7 +88,7 @@
 										<div class="product-item">
 											<figure class="product-style">
 												<!-- Gambar produk -->
-												<img src="{{ Storage::url($product->image) }}"
+												<img src="{{ Storage::url('product_images/' . $product->image) }}"
 													alt="{{ $product->name }}" 
 													class="product-item" width="150">
 													<!-- Tombol Chat WA dan Review -->
@@ -182,7 +182,7 @@
 									<div class="col-md-3">
 										<div class="product-item">
 											<figure class="product-style">
-												<img src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}" class="product-item" width="150">
+												<img src="{{ Storage::url('product_images/' . $product->image) }}" alt="{{ $product->name }}" class="product-item" width="150">
 
 												<!-- Tombol Chat WA dan Review -->
 												<div class="product-buttons">
@@ -238,7 +238,7 @@
 				@if($approvedReviews->isNotEmpty())
 					@foreach($approvedReviews as $review)
 						<div style="flex: 250px; background: #F3F2EC; padding: 25px; border-radius: 10px; box-shadow: 0 10px 10px rgba(0,0,0,0.4); text-align: center;">
-							<img src="{{ Storage::url($review->product->image) }}" 
+							<img src="{{ Storage::url('product_images/' . $review->product->image) }}" 
 								alt="{{ $review->product->name }}" 
 								style="border-radius: 50%; margin-bottom: 15px; width: 70px; height: 70px; object-fit: cover;">
 							<p style="font-size: 1rem; color: #555;">“{{ $review->comment }}”</p>

@@ -37,7 +37,8 @@ class ProductsController extends Controller
                     $imagePath = null;
                     if ($request->hasFile('image')) {
                         $imagePath = $request->file('image')->store('product_images', 'public');
-                        $validatedData['image'] = $imagePath;
+                        $imageName = basename($imagePath);
+                        $validatedData['image'] = $imageName;
                     }
 
                     Product::create($validatedData);
@@ -83,10 +84,10 @@ class ProductsController extends Controller
                     }
         
                     // Simpan gambar baru
-                    $image = $request->file('image');
-                    $filename = time() . '_' . Str::random(10) . '.' . $image->getClientOriginalExtension();
-                    $image->storeAs('public/product_images', $filename);
-                    $product->image = $filename;
+                    $image = $request->file('image')->store('product_images', 'public');
+                    $product->image = basename($image);
+
+
                 }
         
                 $product->save();
