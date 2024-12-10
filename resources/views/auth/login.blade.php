@@ -78,14 +78,14 @@
               @csrf
               <div class="mb-3">
                 <label class="form-label">Username</label>
-                <input name="username" class="form-control" placeholder="Enter username" autocomplete="off">
+                <input name="username" class="form-control" placeholder="@lang('bahasa.username')" autocomplete="off">
               </div>
               <div class="mb-2">
                 <label class="form-label">
                   Password
                 </label>
                 <div class="input-group input-group-flat">
-                  <input id="password" name="password" type="password" class="form-control" placeholder="Enter password" autocomplete="off">
+                  <input id="password" name="password" type="password" class="form-control" placeholder="@lang('bahasa.password')" autocomplete="off">
                   <span class="input-group-text">
                       <a href="#" id="toggle-password" class="link-secondary" title="Show password" data-bs-toggle="tooltip">
                           <!-- Ikon mata -->
@@ -100,10 +100,10 @@
               </div>
               
               <div class="form-footer">
-                <button type="submit" class="btn w-100">Login</button>
+                <button type="submit" class="btn w-100">@lang('bahasa.login')</button>
               </div>
               <div class="text-center text-secondary mt-3">
-                Don't have account yet? <a href="{{ url('register') }}" tabindex="-1">Register</a>
+                @lang('bahasa.acc') <a href="{{ url('register') }}" tabindex="-1">@lang('bahasa.register')</a>
               </div>
             </form>
           </div>

@@ -7,6 +7,12 @@
             </div>
         @endif
 
+		<div>
+			<a href="locale/en">English</a> |
+			<a href="locale/id">Bahasa Indonesia</a>
+		</div>
+
+
 	<section id="billboard">
 
 		<div class="container">
@@ -18,24 +24,26 @@
 					</button>
 
 					<div class="main-slider pattern-overlay">
+					<div class="slider-item">
+							<div class="banner-content">
+								<h2 class="banner-title">@lang('bahasa.profile1')</h2>
+								<p>@lang('bahasa.profile2')</p>
+							</div><!--banner-content-->
+								<img src="{{ asset('assets/img/logo-ne-trnsp.png') }}" alt="banner" class="banner-image">
+						</div><!--slider-item-->
+
 						<div class="slider-item">
 							<div class="banner-content">
-								<h2 class="banner-title">New Well Dressed</h2>
-								<p>Enter a world of unrivaled style with our revolutionary hoodie! 
-									Designed for trendsetters, 
-									this hoodie combines modern aesthetics with exceptional premium quality. 
-									Made from an ultra-soft and breathable material, this hoodie provides maximum comfort without compromising on style.</p>
+								<h2 class="banner-title">@lang('bahasa.title1')</h2>
+								<p>@lang('bahasa.desc1')</p>
 							</div><!--banner-content-->
 								<img src="{{asset('cust-assets/images/items/men1.png') }}" alt="banner" class="banner-image">
 						</div><!--slider-item-->
 
 						<div class="slider-item">
 							<div class="banner-content">
-								<h2 class="banner-title">New Person New Desain</h2>
-								<p>With edgy design details and bold color choices, 
-									this hoodie is ready to be your fashion statement. 
-									Great for pairing with jeans, joggers, or even worn over your favorite t-shirt, 
-									this hoodie is the perfect choice for any occasion-from casual hangouts to outdoor adventures.</p>
+								<h2 class="banner-title">@lang('bahasa.title2')</h2>
+								<p>@lang('bahasa.desc2')</p>
 							</div><!--banner-content-->
 							<img src="{{asset('cust-assets/images/items/men2.png') }}" alt="banner" class="banner-image">
 						</div><!--slider-item-->
@@ -78,7 +86,7 @@
 						<div class="title">
 							<span>Some quality items</span>
 						</div>
-						<h2 class="section-title">Featured Newest - Woman</h2>
+						<h2 class="section-title">@lang('bahasa.title_wmn')</h2>
 					</div>
 					<div class="product-list" data-aos="fade-up">
 						<div class="row">
@@ -105,7 +113,7 @@
 															</a>
 														@else
 															<a href="{{ route('login') }}" class="btn-icon btn-lock">
-																<i class="fas fa-lock"></i> Login to Review
+																<i class="fas fa-lock"></i> @lang('bahasa.review')
 															</a>
 														@endif
 													</div>
@@ -113,8 +121,8 @@
 											<figcaption>
 												<h3>{{ $product->name }}</h3>
 												<span>{{ $product->author }}</span>
-												<div class="item-price">Rp.{{ $product->price }}</div>
-											</figcaption>
+												<div class="item-price">Rp {{ number_format($product->price, 0, ',', '.') }}</div>
+												</figcaption>
 										</div>
 									</div>
 								@endif
@@ -143,12 +151,12 @@
 
 						<div class="col-md-6">
 							<div class="product-entry">
-								<h2 class="section-title divider">Desain Quality</h2>
+								<h2 class="section-title divider">@lang('bahasa.title_quality')</h2>
 
 								<div class="products-content">
-									<div class="author-name">By Newest</div>
-									<h3 class="item-title">Graffiti on Top</h3>
-									<p>A crop top that combines modern style with a futuristic touch. Its gravity-inspired design gives it a unique and distinctive feel. Perfect for confident women who want to stand out.</p>
+									<div class="author-name">@lang('bahasa.title_author')</div>
+									<h3 class="item-title">@lang('bahasa.title_item')</h3>
+									<p>@lang('bahasa.desc3')</p>
 									
 								</div>
 
@@ -172,7 +180,7 @@
 						<div class="title">
 							<span>Some quality items</span>
 						</div>
-						<h2 class="section-title">Featured Newest - Man</h2>
+						<h2 class="section-title">@lang('bahasa.title_mn')</h2>
 					</div>
 					<div class="tab-content">
 						<div id="all-genre" data-tab-content class="active">
@@ -199,7 +207,7 @@
 														</a>
 													@else
 														<a href="{{ route('login') }}" class="btn-icon btn-lock">
-															<i class="fas fa-lock"></i> Login to Review
+															<i class="fas fa-lock"></i> @lang('bahasa.review')
 														</a>
 													@endif
 												</div>
@@ -223,17 +231,17 @@
 
 	<section id="quotation" class="align-center py-5 my-5">
 		<div class="inner-content">
-			<h2 class="section-title divider">Quote of the day</h2>
+			<h2 class="section-title divider">@lang('bahasa.quote')</h2>
 			<blockquote data-aos="fade-up">
-				<q>Fashion is not just about clothing, it’s about expressing who you are. With online shopping, you can express yourself anytime, anywhere.</q>
-				<div class="author-name">Unknown</div>
+				<q>@lang('bahasa.desc4')</q>
+				<div class="author-name">@lang('bahasa.quote_author')</div>
 			</blockquote>
 		</div>
 	</section>
 
 	<section id="testimonial" class="align-center py-5 my-5">
 		<div class="container">
-			<h2 class="section-title divider" >What Our Happy Customers Say</h2>
+			<h2 class="section-title divider" >@lang('bahasa.title_review')</h2>
 			<div class="testimonials-slider" style="display: flex; gap: 30px; overflow-x: auto; padding: 60px;">
 				@if($approvedReviews->isNotEmpty())
 					@foreach($approvedReviews as $review)
@@ -245,11 +253,11 @@
 							<h4 style="font-size: 1.2rem; font-weight: bold; margin-top: 10px; color: #333;">
 								{{ $review->user->name }}
 							</h4>
-							<small>Product: {{ $review->rating }} | Service: {{ $review->service_rating }}</small>
+							<small>@lang('bahasa.title_product'): {{ $review->rating }} | @lang('bahasa.title_service'): {{ $review->service_rating }}</small>
 						</div>
 					@endforeach
 				@else
-					<p class="text-center">No testimonials available yet.</p>
+					<p class="text-center">@lang('bahasa.no_testi')</p>
 				@endif
 			</div>
 		</div>

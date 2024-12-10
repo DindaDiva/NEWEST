@@ -78,24 +78,29 @@
                 @csrf
 
                 <div class="mb-3">
-                  <label class="form-label">Name</label>
-                  <input name="name" class="form-control" placeholder="Enter name" autocomplete="off">
+                  <label class="form-label">@lang('bahasa.name2')</label>
+                  <input name="name" class="form-control" placeholder="@lang('bahasa.name1')" autocomplete="off">
                 </div>
 
                 <div class="mb-3">
                   <label class="form-label">Username</label>
-                  <input name="username" class="form-control" placeholder="Enter username" autocomplete="off">
+                  <input name="username" class="form-control" placeholder="@lang('bahasa.username')" autocomplete="off">
                 </div>
 
                 <div class="mb-3">
                   <label class="form-label">Email</label>
-                  <input name="email" class="form-control" placeholder="Enter email" autocomplete="off">
+                  <input name="email" class="form-control" placeholder="@lang('bahasa.email')" autocomplete="off">
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label">@lang('bahasa.phone')</label>
+                  <input name="phone" class="form-control" placeholder="@lang('bahasa.number')" autocomplete="off">
                 </div>
 
                 <div class="mb-3">
                   <label class="form-label">Password</label>
                   <div class="input-group input-group-flat">
-                    <input id="password" name="password" type="password" class="form-control" placeholder="Enter password" autocomplete="off">
+                    <input id="password" name="password" type="password" class="form-control" placeholder="@lang('bahasa.password')" autocomplete="off">
                     <span class="input-group-text">
                       <a href="#" class="toggle-password link-secondary" title="Show password" data-bs-toggle="tooltip">
                         <svg class="icon toggle-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -109,9 +114,9 @@
                 </div>
 
                 <div class="mb-3">
-                  <label class="form-label">Confirm Password</label>
+                  <label class="form-label">@lang('bahasa.confirm') Password</label>
                   <div class="input-group input-group-flat">
-                    <input id="password_confirmation" name="password_confirmation" type="password" class="form-control" placeholder="Confirm password" autocomplete="off">
+                    <input id="password_confirmation" name="password_confirmation" type="password" class="form-control" placeholder="@lang('bahasa.confirm') password" autocomplete="off">
                     <span class="input-group-text">
                       <a href="#" class="toggle-password link-secondary" title="Show password" data-bs-toggle="tooltip">
                         <svg class="icon toggle-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -125,7 +130,7 @@
                 </div>
 
                 <div class="form-footer">
-                  <button type="submit" class="btn w-100">Register</button>
+                  <button type="submit" class="btn w-100">@lang('bahasa.register')</button>
                 </div>
               </form>
           </div>

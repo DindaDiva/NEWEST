@@ -16,6 +16,10 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'checkRole' => \App\Http\Middleware\CheckRole::class,
         ]);
+
+        $middleware->web(append:[
+            App\Http\Middleware\LocalizationMiddleware::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

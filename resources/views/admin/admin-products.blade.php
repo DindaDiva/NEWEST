@@ -47,7 +47,7 @@
                             <td>{{ $product->kode_produk }}</td>
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->description }}</td>
-                            <td>{{ $product->price }}</td>
+                            <td>{{ number_format($product->price, 0, ',', '.') }}</td>
                             <td>{{ $product->type }}</td>
                             <td>{{ $product->gender_category }}</td>
                             <td><img src="{{ Storage::url('product_images/' . $product->image) }}" width="100" alt="Gambar {{ $product->name }}"></td>

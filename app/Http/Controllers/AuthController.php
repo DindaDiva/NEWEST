@@ -22,6 +22,7 @@ class AuthController extends Controller
                 'username' => 'required|string|max:255|unique:users',
                 'password' => 'required|string|min:8|confirmed',
                 'email' => 'required|string|email|max:255|unique:users',
+                'phone' => 'required|string|max:15',
             ]);
         
             // Buat user baru dengan role default "user"
@@ -30,7 +31,8 @@ class AuthController extends Controller
                 'username' => $request->username,
                 'password' => Hash::make($request->password),
                 'email' => $request->email,
-                'role' => 'cust', // Role default
+                'role' => 'cust',
+                'phone' => $request->phone, // Role default
             ]);
         
             // Redirect atau login otomatis

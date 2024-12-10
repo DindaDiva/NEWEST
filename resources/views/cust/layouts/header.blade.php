@@ -45,10 +45,10 @@
 						<nav id="navbar">
 							<div class="main-menu stellarnav">
 								<ul class="menu-list">
-									<li class="menu-item"><a href="#home" class="nav-link">Home</a></li>
-									<li class="menu-item"><a href="#woman" class="nav-link">Woman</a></li>
-									<li class="menu-item"><a href="#man" class="nav-link">Man</a></li>
-									<li class="menu-item"><a href="#testimonial" class="nav-link">Testimonial</a></li>
+									<li class="menu-item"><a href="#home" class="nav-link">@lang('bahasa.home')</a></li>
+									<li class="menu-item"><a href="#woman" class="nav-link">@lang('bahasa.woman')</a></li>
+									<li class="menu-item"><a href="#man" class="nav-link">@lang('bahasa.man')</a></li>
+									<li class="menu-item"><a href="#testimonial" class="nav-link">@lang('bahasa.testimonial')</a></li>
 									<li class="menu-item dropdown">
 										@if(Auth::check())
 											<!-- Nama pengguna sebagai tombol dropdown -->
@@ -67,7 +67,7 @@
 													<a href="{{ route('logout') }}" 
 													class="dropdown-item" 
 													onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-														Logout
+														@lang('bahasa.logout')
 													</a>
 												</li>
 											</ul>
@@ -78,7 +78,7 @@
 											</form>
 										@else
 											<!-- Tombol Login -->
-											<a href="{{ route('login') }}" class="nav-link btn btn-outline-dark rounded-pill m-0">Login</a>
+											<a href="{{ route('login') }}" class="nav-link btn btn-outline-dark rounded-pill m-0">@lang('bahasa.login')</a>
 										@endif
 									</li>
 								</ul>

@@ -7,11 +7,14 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CustController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UnauthorizedController;
+use App\Http\Controllers\LocaleController;
 use App\Http\Middleware\CheckRole;
+
 
 
 Route::get('/', [CustController::class, 'index'])->name('home');
 
+Route::get('locale/{lang}',[LocaleController::class,'setLocale']);
 
 Route::get('/login', [SesiController::class, 'index'])->name('login');
 Route::post('/login', [SesiController::class, 'login']);
