@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="mb-3">
-                  <label class="form-label">Username</label>
+                  <label class="form-label">@lang('bahasa.usn')</label>
                   <input name="username" class="form-control" placeholder="@lang('bahasa.username')" autocomplete="off">
                 </div>
 
@@ -98,7 +98,7 @@
                 </div>
 
                 <div class="mb-3">
-                  <label class="form-label">Password</label>
+                  <label class="form-label">@lang('bahasa.pw')</label>
                   <div class="input-group input-group-flat">
                     <input id="password" name="password" type="password" class="form-control" placeholder="@lang('bahasa.password')" autocomplete="off">
                     <span class="input-group-text">
@@ -114,9 +114,9 @@
                 </div>
 
                 <div class="mb-3">
-                  <label class="form-label">@lang('bahasa.confirm') Password</label>
+                  <label class="form-label">@lang('bahasa.confirm') @lang('bahasa.pw')</label>
                   <div class="input-group input-group-flat">
-                    <input id="password_confirmation" name="password_confirmation" type="password" class="form-control" placeholder="@lang('bahasa.confirm') password" autocomplete="off">
+                    <input id="password_confirmation" name="password_confirmation" type="password" class="form-control" placeholder="@lang('bahasa.confirm') " autocomplete="off">
                     <span class="input-group-text">
                       <a href="#" class="toggle-password link-secondary" title="Show password" data-bs-toggle="tooltip">
                         <svg class="icon toggle-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">

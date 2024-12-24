@@ -158,6 +158,34 @@ a {
 
 /* btn */
 
+.btn-animated {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 15px 0 50px 0;
+  background-color: #f8b400;
+  color: #fff;
+  font-size: 16px;
+  text-decoration: none;
+  border-radius: 50px;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+}
+
+.btn-animated:hover {
+  background-color: #e09e00;
+}
+
+.btn-animated .arrow {
+  display: inline-block;
+  margin-left: 10px;
+  transition: transform 0.3s ease;
+}
+
+.btn-animated:hover .arrow {
+  transform: translateX(5px); /* Animasi panah ke kanan */
+}
+
 /* Kontainer tombol */
 .product-buttons {
   display: flex;

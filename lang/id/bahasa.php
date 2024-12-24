@@ -1,8 +1,10 @@
 <?php
 return [
     'register'=>'Daftar',
-    'username'=>'Masukkan username',
-    'password'=>'Masukkan password',
+    'username'=>'Masukkan nama pengguna',
+    'password'=>'Masukkan kata kunci',
+    'usn'=>'Nama Pengguna',
+    'pw'=>'Kata Kunci',
     'acc'=>'Belum punya akun?',
     'name1'=>'Masukkan nama',
     'name2'=>'Nama',
@@ -11,10 +13,10 @@ return [
     'email'=>'Masukkan email',
     'confirm'=>'Konfirmasi',
     'login' => 'Masuk',
-    'home' => 'Home',
+    'home' => 'Beranda',
     'woman' => 'Wanita',
     'man' => 'Pria',
-    'testimonial' => 'Testimoni',
+    'testimonial' => 'Ulasan',
     'logout'=>'Keluar',
 
 
@@ -29,6 +31,7 @@ return [
     'submit'=>'Kirim',
     'write'=>'Tulis review kamu disini...',
 
+    'quality'=>'Beberapa barang berkualitas',
 
     'profile1'=>'Tradisi Lama, Gaya Baru',
     'profile2'=>'NEWEST adalah platform e-commerce berbasis web yang menyediakan berbagai produk kain Sasirangan berkualitas tinggi, kain tradisional khas Kalimantan Selatan. Platform ini 
@@ -47,7 +50,7 @@ return [
 									hoodie ini adalah pilihan yang sempurna untuk segala acara-dari acara santai hingga petualangan di luar ruangan.',
 
 
-    'title_wmn'=>'Featured Newest - Wanita',
+    'title_wmn'=>'Unggulan Newest - Wanita',
 
 
     'review'=>'Masuk untuk Review',
@@ -59,7 +62,7 @@ return [
     'desc3'=>'Atasan crop top yang memadukan gaya modern dengan sentuhan futuristik. Desainnya yang terinspirasi dari gravitasi memberikan kesan unik dan berbeda. Sempurna untuk wanita percaya diri yang ingin tampil beda.',
 
 
-    'title_mn'=>'Featured Newest - Pria',
+    'title_mn'=>'Unggulan Newest - Pria',
 
 
     'quote'=>'Pesan hari ini',
@@ -70,7 +73,12 @@ return [
     'title_product'=>'Produk',
     'title_service'=>'Jasa',
 
-    'no_testi'=>'Belum ada testimoni.'
+    'no_testi'=>'Belum ada testimoni.',
 
-
+    'profile'=>'Profil Kami',
+    'lokasi'=>'Lokasi Kami',
+    'follow'=>'Ikuti Kami',
+    'hub'=>'Hubungi Kami',
+    'operating'=>'Jam Operasional',
+    'day'=>'Senin - Jumat',
 ];

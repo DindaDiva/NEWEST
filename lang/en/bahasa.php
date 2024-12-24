@@ -3,6 +3,8 @@ return [
     'register'=>'Register',
     'username'=>'Enter username',
     'password'=>'Enter password',
+    'usn'=>'Username',
+    'pw'=>'Password',
     'acc'=>'Do Not have account yet?',
     'name1'=>'Enter name',
     'name2'=>'Name',
@@ -29,6 +31,7 @@ return [
     'submit'=>'Submit',
     'write'=>'Write your review here...',
 
+    'quality'=>'Some quality items',
 
     'profile1'=>'Old Traditions, New Styles',
     'profile2'=>'NEWEST is a web-based e-commerce platform that provides a variety of high-quality Sasirangan fabric products, a traditional fabric typical of South Kalimantan. This platform 
@@ -70,7 +73,12 @@ return [
     'title_product'=>'Product',
     'title_service'=>'Service',
 
-    'no_testi'=>'No testimonials available yet.'
+    'no_testi'=>'No testimonials available yet.',
 
-
+    'profile'=>'Our Profile',
+    'lokasi'=>'Our Location',
+    'follow'=>'Follow Us',
+    'hub'=>'Our Contact',
+    'operating'=>'Operating Hours',
+    'day'=>'Monday - Friday',
 ];

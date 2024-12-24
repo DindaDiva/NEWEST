@@ -77,12 +77,12 @@
             <form action="" method="POST" autocomplete="off" novalidate>
               @csrf
               <div class="mb-3">
-                <label class="form-label">Username</label>
+                <label class="form-label">@lang('bahasa.usn')</label>
                 <input name="username" class="form-control" placeholder="@lang('bahasa.username')" autocomplete="off">
               </div>
               <div class="mb-2">
                 <label class="form-label">
-                  Password
+                  @lang('bahasa.pw')
                 </label>
                 <div class="input-group input-group-flat">
                   <input id="password" name="password" type="password" class="form-control" placeholder="@lang('bahasa.password')" autocomplete="off">

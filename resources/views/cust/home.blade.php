@@ -24,13 +24,21 @@
 					</button>
 
 					<div class="main-slider pattern-overlay">
-					<div class="slider-item">
+						<div class="slider-item">
 							<div class="banner-content">
 								<h2 class="banner-title">@lang('bahasa.profile1')</h2>
 								<p>@lang('bahasa.profile2')</p>
+								<p>
+									<a href="https://maps.app.goo.gl/C7fpSuVwAH7CTuoW7"
+										target="_blank" 
+										class="btn-animated">
+											@lang('bahasa.lokasi')
+										<span class="arrow">→</span>
+									</a>
+								</p>
 							</div><!--banner-content-->
-								<img src="{{ asset('assets/img/logo-ne-trnsp.png') }}" alt="banner" class="banner-image">
-						</div><!--slider-item-->
+								<div id="lottie-container" style="width: 500px; height: 500px; margin: 80px 0 0 0;"></div>
+							</div><!--slider-item-->
 
 						<div class="slider-item">
 							<div class="banner-content">
@@ -84,7 +92,7 @@
 				<div class="col-md-12">
 					<div class="section-header align-center">
 						<div class="title">
-							<span>Some quality items</span>
+							<span>@lang('bahasa.quality')</span>
 						</div>
 						<h2 class="section-title">@lang('bahasa.title_wmn')</h2>
 					</div>
@@ -178,7 +186,7 @@
 				<div class="col-md-12">
 					<div class="section-header align-center">
 						<div class="title">
-							<span>Some quality items</span>
+							<span>@lang('bahasa.quality')</span>
 						</div>
 						<h2 class="section-title">@lang('bahasa.title_mn')</h2>
 					</div>
@@ -215,7 +223,7 @@
 											<figcaption>
 												<h3>{{ $product->name }}</h3>
 												<span>{{ $product->author }}</span>
-												<div class="item-price">Rp.{{ $product->price }}</div>
+												<div class="item-price">Rp {{ number_format($product->price, 0, ',', '.') }}</div>
 											</figcaption>
 										</div>
 									</div>
@@ -275,6 +283,16 @@
     }, 1000); // 5000 ms = 5 detik
 	</script>
 
+	<script>
+		// Load animasi Lottie JSON
+		var animation = lottie.loadAnimation({
+			container: document.getElementById('lottie-container'), // ID container animasi
+			renderer: 'svg', // Jenis renderer (svg/canvas/html)
+			loop: true, // Animasi berulang
+			autoplay: true, // Animasi otomatis dimulai
+			path: '{{ asset("assets/json/animated.json") }}' // Path ke file JSON
+		});
+	</script>
 
 	@include('cust.layouts.footer')
 	@endsection
