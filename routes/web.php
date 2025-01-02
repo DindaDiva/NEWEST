@@ -23,6 +23,8 @@ Route::post('/logout', [SesiController::class, 'logout'])->name('logout');
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
 
+Route::get('/produk/{id}',[CustController::class, 'detail'])->name('cust.detail');
+
 
 //Route::get('/register', function () {return view('auth.register');})->name('register');
 //Route::post('/register', [SesiController::class, 'register']);

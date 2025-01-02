@@ -10,12 +10,16 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\UnauthorizedController;
 use App\Http\Middleware\CheckRole;
 use App\Models\Product;
+use App\Models\ProductImage;
 use App\Models\Review;
+use Stichoza\GoogleTranslate\GoogleTranslate;
+
 
 
 class CustController extends Controller
 {
-    public function index() {
+    public function index() 
+    {
         $products = Product::all();  
 
         $approvedReviews = Review::with('user', 'product')
@@ -53,6 +57,28 @@ class CustController extends Controller
         return redirect()->route('cust-home')->with('success', 'Your review has been submitted and is awaiting approval!');
     }
 
+
+    public function detail($id)
+    {
+       // Ambil data produk dari database
+        $product = Product::findOrFail($id);
+
+        // Tentukan bahasa untuk terjemahan
+        $language = session('locale', 'en'); // Default ke bahasa Inggris jika tidak ada session
+
+        // Menggunakan Google Translate untuk menerjemahkan nama dan deskripsi produk
+        $translator = new GoogleTranslate($language);  // 'en' untuk Inggris, 'id' untuk Indonesia
+
+        $product->description_id = $translator->translate($product->description);
+        $product->type_id = $translator->translate($product->type);
+        $product->material_id = $translator->translate($product->material);
+        $product->gender_id = $translator->translate($product->gender_category);
+
+
+        
+
+        return view('cust.detail', compact('product'));
+    }
    
 
     

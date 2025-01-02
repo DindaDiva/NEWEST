@@ -15,9 +15,16 @@ class Product extends Model
         'description',
         'price',
         'type',
+        'material',
+        'size',
         'gender_category',
-        'image'
     ];
 
     protected $primaryKey = 'id';
+
+    // Relasi ke tabel product_images
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
 }

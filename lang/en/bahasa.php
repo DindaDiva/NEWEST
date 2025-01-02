@@ -81,4 +81,10 @@ return [
     'hub'=>'Our Contact',
     'operating'=>'Operating Hours',
     'day'=>'Monday - Friday',
+
+    'pict'=>'No image available',
+    'kat'=>'Category',
+    'bhn'=>'Material',
+    'uk'=>'Size',
+    'gender'=>'Gender'
 ];

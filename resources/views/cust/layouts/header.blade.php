@@ -39,7 +39,7 @@
 
 					<div class="col-md-2">
 						<div class="main-logo">
-							<a href="#home"><img src="{{ asset('cust-assets/images/logo-transp.png')}}" alt="logo" width="150px" ></a>
+							<a href="{{ url('/') }}#home" ><img src="{{ asset('cust-assets/images/logo-transp.png')}}" alt="logo" width="150px" ></a>
 						</div>
 
 					</div>
@@ -49,10 +49,10 @@
 						<nav id="navbar">
 							<div class="main-menu stellarnav">
 								<ul class="menu-list">
-									<li class="menu-item"><a href="#home" class="nav-link">@lang('bahasa.home')</a></li>
-									<li class="menu-item"><a href="#woman" class="nav-link">@lang('bahasa.woman')</a></li>
-									<li class="menu-item"><a href="#man" class="nav-link">@lang('bahasa.man')</a></li>
-									<li class="menu-item"><a href="#testimonial" class="nav-link">@lang('bahasa.testimonial')</a></li>
+									<li class="menu-item"><a href="{{ url('/') }}#home" class="nav-link">@lang('bahasa.home')</a></li>
+									<li class="menu-item"><a href="{{ url('/') }}#woman" class="nav-link">@lang('bahasa.woman')</a></li>
+									<li class="menu-item"><a href="{{ url('/') }}#man" class="nav-link">@lang('bahasa.man')</a></li>
+									<li class="menu-item"><a href="{{ url('/') }}#testimonial" class="nav-link">@lang('bahasa.testimonial')</a></li>
 									<li class="menu-item dropdown">
 										@if(Auth::check())
 											<!-- Nama pengguna sebagai tombol dropdown -->

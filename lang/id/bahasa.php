@@ -81,4 +81,10 @@ return [
     'hub'=>'Hubungi Kami',
     'operating'=>'Jam Operasional',
     'day'=>'Senin - Jumat',
+
+    'pict'=>'Gambar belum tersedia',
+    'kat'=>'Kategori',
+    'bhn'=>'Bahan',
+    'uk'=>'Ukuran',
+    'gender'=>'Jenis Kelamin'
 ];

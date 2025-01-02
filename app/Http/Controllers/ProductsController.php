@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage; 
-
-
 
 
 class ProductsController extends Controller
@@ -24,28 +23,50 @@ class ProductsController extends Controller
             // Menyimpan produk baru
             public function store(Request $request)
             {
-                    $validatedData = $request->validate([
-                        'kode_produk' => 'required|string|max:255',
-                        'name' => 'required|string|max:255',
-                        'description' => 'required',
-                        'price' => 'required|numeric',
-                        'type' => 'required|in:atasan,bawahan',
-                        'gender_category' => 'required|in:woman,man',
-                        'image' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
-                    ]);
-            
-                    $imagePath = null;
-                    if ($request->hasFile('image')) {
-                        $imagePath = $request->file('image')->store('product_images', 'public');
-                        $imageName = basename($imagePath);
-                        $validatedData['image'] = $imageName;
-                    }
+                // Validasi input
+                $validatedData = $request->validate([
+                    'kode_produk' => 'required|string|max:255',
+                    'name' => 'required|string|max:255',
+                    'description' => 'required',
+                    'price' => 'required|numeric',
+                    'type' => 'required|in:atasan,bawahan',
+                    'material' => 'nullable|string|max:255',
+                    'size' => 'nullable|string|max:255',
+                    'gender_category' => 'required|in:woman,man',
+                    'image.*' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
+                ]);
 
-                    Product::create($validatedData);
-            
-                    return redirect()->route('admin-products')->with('success', 'Product added successfully.');
+                // Simpan data produk ke tabel products
+                $product = Product::create([
+                    'kode_produk' => $validatedData['kode_produk'],
+                    'name' => $validatedData['name'],
+                    'description' => $validatedData['description'],
+                    'price' => $validatedData['price'],
+                    'type' => $validatedData['type'],
+                    'material' => $validatedData['material'] ?? null,
+                    'size' => $validatedData['size'] ?? null,
+                    'gender_category' => $validatedData['gender_category'],
+                ]);
+
+                // Simpan gambar ke tabel product_images
+                if ($request->hasFile('image')) {
+                    foreach ($request->file('image') as $image) {
+                        $imagePath = $image->store('product_images', 'public');
+
+                        // Simpan data gambar ke tabel product_images
+                        ProductImage::create([
+                            'product_id' => $product->id,
+                            'image_path' => basename($imagePath),
+                        ]);
+                    }
+                }
+
+        
+
+                return redirect()->route('admin-products')->with('success', 'Product added successfully.');
             }
         
+
             // Menampilkan data produk untuk diedit
             public function edit($id)
             {
@@ -53,6 +74,7 @@ class ProductsController extends Controller
                 return view('admin.admin-products', compact('product')); // Tampilkan form edit
             }
         
+
             // Memperbarui data produk
             public function update(Request $request, $id)
             {
@@ -61,40 +83,38 @@ class ProductsController extends Controller
                     'name' => 'required|string|max:255',
                     'description' => 'nullable|string',
                     'price' => 'required|numeric',
-                    'type' => 'required|string|max:255',
-                    'gender_category' => 'required|string|max:255', // Pastikan ini sesuai dengan pilihan
-                    'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                    'type' => 'required|in:atasan,bawahan',
+                    'material' => 'nullable|string|max:255',
+                    'size' => 'nullable|string|max:255',
+                    'gender_category' => 'required|string|max:255',
+                    'images.*' => 'nullable|image|mimes:jpg,png,jpeg|max:2048',
                 ]);
-        
-                $product = Product::findOrFail($id);
+
+                // Ambil produk berdasarkan ID
+                $product = Product::with('images')->findOrFail($id);
 
                 // Update data produk
-                $product->kode_produk = $validatedData['kode_produk'];
-                $product->name = $validatedData['name'];
-                $product->description = $validatedData['description'];
-                $product->price = $validatedData['price'];
-                $product->type = $validatedData['type'];
-                $product->gender_category = $validatedData['gender_category'];
-        
-                // Jika ada gambar baru yang di-upload, simpan dan hapus gambar lama
-                if ($request->hasFile('image')) {
-                    // Hapus gambar lama jika ada
-                    if ($product->image) {
-                        \Storage::delete('public/product_images/' . $product->image);
+                $product->update($validatedData);
+
+                // Kelola gambar baru
+                if ($request->hasFile('images')) {
+                    // Hapus gambar lama
+                    foreach ($product->images as $image) {
+                        \Storage::delete('public/product_images/' . $image->image_path);
+                        $image->delete();
                     }
-        
+
                     // Simpan gambar baru
-                    $image = $request->file('image')->store('product_images', 'public');
-                    $product->image = basename($image);
-
-
+                    foreach ($request->file('images') as $uploadedImage) {
+                        $imagePath = $uploadedImage->store('product_images', 'public');
+                        $product->images()->create(['image_path' => basename($imagePath)]);
+                    }
                 }
-        
-                $product->save();
-        
+
                 return redirect()->route('admin-products')->with('success', 'Product updated successfully!');
             }
-        
+
+            
             // Menghapus produk
             public function destroy($id)
             {
@@ -110,6 +130,7 @@ class ProductsController extends Controller
 
                 return redirect()->route('admin-products')->with('success', 'Product successfully deleted!');
             }
+
 
              public function search(Request $request)
             {

@@ -26,6 +26,16 @@
             </div>
         </div>
 
+        @if ($errors->any())
+            <div class="">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <table class="table table-bordered">
                 <thead class="thead-dark">
                     <tr>
@@ -35,6 +45,8 @@
                         <th>Description</th>
                         <th>Price (Rp)</th>
                         <th>Tipe</th>
+                        <th>Material</th>
+                        <th>Size</th>
                         <th>Gender</th>
                         <th>Picture</th>
                         <th>Actions</th>
@@ -49,8 +61,14 @@
                             <td>{{ $product->description }}</td>
                             <td>{{ number_format($product->price, 0, ',', '.') }}</td>
                             <td>{{ $product->type }}</td>
+                            <td>{{ $product->material }}</td>
+                            <td>{{ $product->size }}</td>
                             <td>{{ $product->gender_category }}</td>
-                            <td><img src="{{ Storage::url('product_images/' . $product->image) }}" width="100" alt="Gambar {{ $product->name }}"></td>
+                            <td>
+                                @foreach ($product->images as $image)
+                                    <img src="{{ Storage::url('product_images/' . $image->image_path) }}" width="100" alt="Gambar {{ $product->name }}">
+                                @endforeach                            
+                            </td>
                             <td>
                                 <!-- Tombol Edit mengarah ke modal yang sesuai -->
                                 <a href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editProductModal{{ $product->id }}">Edit</a>
@@ -92,10 +110,18 @@
                                                 <div class="form-group">
                                                     <label for="productType">Tipe</label>
                                                     <select class="form-control" id="type" name="type">
-                                                        <option value="Atasan" {{ old('type', $product->type) == 'Atasan' ? 'selected' : '' }}>Atasan</option>
-                                                        <option value="Bawahan" {{ old('type', $product->type) == 'Bawahan' ? 'selected' : '' }}>Bawahan</option>
+                                                        <option value="atasan" {{ old('type', $product->type) == 'atasan' ? 'selected' : '' }}>Atasan</option>
+                                                        <option value="bawahan" {{ old('type', $product->type) == 'bawahan' ? 'selected' : '' }}>Bawahan</option>
                                                     </select>
                                                 </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="editProductMaterial" class="form-label">Material</label>
+                                                <input type="text" name="material" class="form-control" id="editProductMaterial" value="{{ old('material', $product->material) }}" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="editProductSize" class="form-label">Size</label>
+                                                <input type="text" name="size" class="form-control" id="editProductSize" value="{{ old('size', $product->size) }}" required>
                                             </div>
                                             <div class="mb-3">
                                                 <div class="form-group">
@@ -108,9 +134,23 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label for="editProductImage" class="form-label">Update Picture</label>
-                                                <input type="file" name="image" class="form-control" id="editProductImage">
-                                                @if ($product->image)
-                                                    <img src="{{ Storage::url('product_images/' . $product->image) }}" width="100" alt="Gambar {{ $product->name }}">
+                                                <input type="file" name="images[]" class="form-control" id="editProductImage" multiple>
+
+                                                @php
+                                                    $images = $product->image ? explode(',', $product->image) : [];
+                                                @endphp
+
+                                                @if ($product->images->isNotEmpty())
+                                                    <div class="mt-2">
+                                                        <label>Current Images:</label>
+                                                        <div class="d-flex flex-wrap">
+                                                            @foreach ($product->images as $image)
+                                                                <div class="me-2 mb-2">
+                                                                    <img src="{{ Storage::url('product_images/' . $image->image_path) }}" width="100" alt="Gambar {{ $product->name }}">
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
                                                 @endif
                                             </div>
                                             <button type="submit" class="btn btn-primary">Update Product</button>
@@ -157,7 +197,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="addProductModal" action="{{ route('product-store') }}"  method="POST" enctype="multipart/form-data">
+                    <form id="addProductForm" action="{{ route('product-store') }}"  method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label for="productCode" class="form-label">Product Code</label>
@@ -185,6 +225,14 @@
                             </div>
                         </div>
                         <div class="mb-3">
+                            <label for="productMaterial" class="form-label">Material</label>
+                            <input type="text" class="form-control" id="material" name="material" placeholder="Add Material">
+                        </div>
+                        <div class="mb-3">
+                            <label for="productSize" class="form-label">Size</label>
+                            <input type="text" class="form-control" id="size" name="size" placeholder="Add Size">
+                        </div>
+                        <div class="mb-3">
                             <div class="form-group">
                                 <label for="productGender">Gender</label>
                                 <select class="form-control" id="gender_category" name="gender_category">
@@ -195,7 +243,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="productImage" class="form-label">Upload Picture</label>
-                            <input type="file" class="form-control" id="image" name="image">
+                            <input type="file" class="form-control" id="image" name="image[]" multiple>
                         </div>
                         <button type="submit" class="btn btn-primary">Add Product</button>
                     </form>

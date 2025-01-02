@@ -104,11 +104,19 @@
 										<div class="product-item">
 											<figure class="product-style">
 												<!-- Gambar produk -->
-												<img src="{{ Storage::url('product_images/' . $product->image) }}"
-													alt="{{ $product->name }}" 
-													class="product-item" width="150">
+
+												<a href="{{ route('cust.detail', $product->id) }}">
+													@if ($product->images->isNotEmpty())
+														<img src="{{ Storage::url('product_images/' . $product->images->first()->image_path) }}" 
+															alt="{{ $product->name }}" 
+															class="product-item" width="150">
+													@else
+														<p>@lang('bahasa.pict')</p>
+													@endif
+												</a>
+												
 													<!-- Tombol Chat WA dan Review -->
-														<div class="product-buttons">
+													<div class="product-buttons">
 														<a 
 															href="https://wa.me/6282251356040?text=Saya%20tertarik%20dengan%20produk%20{{ urlencode($product->name) }}%20dengan%20harga%20Rp.{{ $product->price }}%20apakah%20produk%20ini%20ready?" 
 															class="btn-icon btn-chat" 
@@ -198,7 +206,16 @@
 									<div class="col-md-3">
 										<div class="product-item">
 											<figure class="product-style">
-												<img src="{{ Storage::url('product_images/' . $product->image) }}" alt="{{ $product->name }}" class="product-item" width="150">
+
+												<a href="{{ route('cust.detail', $product->id) }}">
+													@if ($product->images->isNotEmpty())
+														<img src="{{ Storage::url('product_images/' . $product->images->first()->image_path) }}" 
+															alt="{{ $product->name }}" 
+															class="product-item" width="150">
+													@else
+														<p>@lang('bahasa.pict')</p>
+													@endif
+												</a>
 
 												<!-- Tombol Chat WA dan Review -->
 												<div class="product-buttons">
